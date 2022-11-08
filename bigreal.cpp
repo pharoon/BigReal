@@ -1,6 +1,6 @@
 #include <iostream>
 #include "bigreal.h"
-#include"bigdecimalint.cpp"
+
 
 BigDecimalInt bigreal::getwhole()
 {
