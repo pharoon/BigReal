@@ -10,7 +10,7 @@ class BigReal {
     BigDecimalInt dec_part, frac_part;
     size_t size_frac{};
 public :
-    //Constructor
+    //Constructors
     BigReal() = default;
 
     explicit BigReal(double num_param);
