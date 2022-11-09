@@ -57,3 +57,207 @@ BigDecimalInt dec_temp(num_param), frac_temp(frac);
 dec_part =  dec_temp;
 frac_part = frac_temp;
 }
+
+//setters and getters//
+BigDecimalInt BigReal::getwhole()
+{
+    return dec_part;
+}
+BigDecimalInt BigReal::getfrac()
+{
+    return frac_part;
+}
+void BigReal::setwhole(BigDecimalInt whole)
+{
+	dec_part = whole;
+}
+void BigReal::setfrac(BigDecimalInt frac)
+{
+	frac_part = frac;
+}
+//functions//
+int BigReal::size()
+{
+	return dec_part.size() + frac_part.size();
+}
+
+char BigReal::sign()
+{
+	if (dec_part.Sign()) {
+		return '+';
+	}
+	else
+		return '-';
+	;
+}
+//overloaded operators//
+bool BigReal:: operator==(BigReal anotherreal)
+{
+	if ((this->dec_part == anotherreal.getwhole()) && (this->frac_part == anotherreal.getfrac()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool BigReal :: operator>(BigReal other)
+{
+	if (this->sign() == '+')
+	{
+		if (other.sign() == '-')
+		{
+			return true;
+		}
+		else
+		{
+			if (dec_part == other.getwhole())
+			{
+				if (frac_part > other.getfrac())
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else if (dec_part > other.getwhole())
+			{
+				return true;
+			}
+			else if (dec_part < other.getwhole())
+			{
+				return false;
+			}
+		}
+	}
+	else if (this->sign() == '-')
+	{
+		if (other.sign() == '+')
+		{
+			return false;
+		}
+		else if (other.sign() == '-')
+		{
+			if (dec_part < other.getwhole())
+			{
+				return true;
+			}
+			if (dec_part == other.getwhole())
+			{
+				if (frac_part < other.getfrac())
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+}
+
+bool BigReal::operator<(BigReal other)
+{
+	if (this->sign() == '-')
+	{
+		if (other.sign() == '+')
+		{
+			return true;
+		}
+		else
+		{
+			if (other.getwhole() < dec_part)
+			{
+				return true;
+			}
+			else if (other.getwhole() == dec_part)
+			{
+				if (other.getfrac() < frac_part)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+	}
+	else if (this->sign() == '+')
+	{
+		if (other.sign() == '-')
+		{
+			return false;
+		}
+		else
+		{
+			if (other.getwhole() > dec_part)
+			{
+				return true;
+			}
+			else if (other.getwhole() == dec_part)
+			{
+				if (other.getfrac() > frac_part)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+}
+ostream& operator<<(ostream& out, BigReal num)
+{
+	if (num.sign() == '-')
+	{
+		out << num.getwhole() << "." << num.getfrac() << endl;
+	}
+	else
+		out << num.sign() << num.getwhole() << "." << num.getfrac();
+	return out;
+}
+istream& operator>>(istream& in, BigReal& num)
+{
+	string input,whole, fraction;
+	in >> input;
+	for (int i = 0; i < input.size(); i++)
+	{
+		if (input[i] == '.')
+		{
+
+			for (int j = 0; j < i; j++)
+			{
+				int x = i + 1;
+				whole.push_back(input[j]);
+			}
+			for (int x = i + 1; x < input.size(); x++)
+			{
+				fraction.push_back(input[x]);
+			}
+		}
+	}
+	BigDecimalInt temp_dec(whole);
+	BigDecimalInt temp_frac(fraction);
+	num.setwhole(temp_dec);
+	num.setfrac(temp_frac);
+	return in;
+}
+
+
+
