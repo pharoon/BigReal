@@ -24,11 +24,21 @@ public :
     //Functions (methods)
 
     //getter methods
+     BigDecimalInt getwhole();
+    BigDecimalInt getfrac();
 
 
     //Setter methods
+    void setwhole(BigDecimalInt whole);
+    void setfrac(BigDecimalInt frac);
 
     //operators methods
+    bool operator< (BigReal anotherReal);
+    bool operator> (BigReal anotherReal);
+    bool operator== (BigReal anotherReal);
+    
+    friend ostream & operator << (ostream & out, BigReal num);
+    friend istream& operator >> (istream& in, BigReal& num);
 
 
 };
