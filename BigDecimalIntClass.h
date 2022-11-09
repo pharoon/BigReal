@@ -19,7 +19,8 @@ such as: +, -, <, and >.
 
 using namespace std;
 
-class BigDecimalInt{
+class BigDecimalInt
+{
 private:
     string number;
     char sign;
@@ -27,21 +28,23 @@ private:
     bool checkValidInput(string input);
 
 public:
-    bool operator < (const BigDecimalInt& anotherDec);
-    bool operator > (const BigDecimalInt& anotherDec);
-    bool operator == (const BigDecimalInt anotherDec);
-    BigDecimalInt& operator = (BigDecimalInt &anotherDec);
-    BigDecimalInt operator + (BigDecimalInt number2);
-    BigDecimalInt operator - (BigDecimalInt anotherDec);
-    friend ostream &operator << (ostream &out, BigDecimalInt num);
+    bool operator<(const BigDecimalInt &anotherDec);
+    bool operator>(const BigDecimalInt &anotherDec);
+    bool operator==(const BigDecimalInt anotherDec);
+    BigDecimalInt &operator=(BigDecimalInt &anotherDec);
+    BigDecimalInt operator+(BigDecimalInt number2);
+    BigDecimalInt operator-(BigDecimalInt anotherDec);
+    friend ostream &operator<<(ostream &out, BigDecimalInt num);
     int size();
     int Sign();
-
-    BigDecimalInt(){}
+    void sets(char s);
+    string get();
+    void setn(string n);
+    BigDecimalInt() {}
     BigDecimalInt(string num)
     {
         setNumber(num);
     }
 };
 
-#endif //BIGDECIMALINT_BIGDECIMALINTCLASS_H
+#endif // BIGDECIMALINT_BIGDECIMALINTCLASS_H

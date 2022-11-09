@@ -5,49 +5,50 @@
 #include <iostream>
 #include "BigDecimalIntClass.h"
 
-class BigReal {
-    //Member variables
+class BigReal
+{
+    // Member variables
     BigDecimalInt dec_part, frac_part;
     size_t size_frac{};
-public :
-    //Constructors
+
+public:
+    // Constructors
     BigReal() = default;
 
     explicit BigReal(double num_param);
 
-    explicit BigReal(BigDecimalInt Bigint_param){
+    explicit BigReal(BigDecimalInt Bigint_param)
+    {
         dec_part = Bigint_param;
     }
 
     explicit BigReal(std::string num_param);
 
-    //Functions (methods)
-     int size();
+    // Functions (methods)
+    int size();
     char sign();
 
-    //getter methods
-     BigDecimalInt getwhole();
+    // getter methods
+    BigDecimalInt getwhole();
     BigDecimalInt getfrac();
 
-
-    //Setter methods
+    // Setter methods
     void setwhole(BigDecimalInt whole);
     void setfrac(BigDecimalInt frac);
 
-    //operators methods
-    bool operator< (BigReal anotherReal);
-    bool operator> (BigReal anotherReal);
-    bool operator== (BigReal anotherReal);
-    
-    friend ostream & operator << (ostream & out, BigReal num);
-    friend istream& operator >> (istream& in, BigReal& num);
+    // operators methods
+    BigReal operator+(BigReal bigreal2);
+    BigReal operator-(BigReal bigreal2);
+    bool operator<(BigReal anotherReal);
+    bool operator>(BigReal anotherReal);
+    bool operator==(BigReal anotherReal);
 
-
+    friend ostream &operator<<(ostream &out, BigReal num);
+    friend istream &operator>>(istream &in, BigReal &num);
 };
 
-class BigRael {
-
+class BigRael
+{
 };
 
-
-#endif //MAIN_CPP_BIGRAEL_H
+#endif // MAIN_CPP_BIGRAEL_H
