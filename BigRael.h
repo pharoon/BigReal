@@ -22,6 +22,8 @@ public :
     explicit BigReal(std::string num_param);
 
     //Functions (methods)
+     int size();
+    char sign();
 
     //getter methods
      BigDecimalInt getwhole();
